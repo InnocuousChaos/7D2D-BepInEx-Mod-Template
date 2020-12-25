@@ -1,4 +1,6 @@
 ﻿using BepInEx;
+using HarmonyLib;
+using System.Reflection;
 
 namespace BepInExPlugin
 {
@@ -20,6 +22,9 @@ namespace BepInExPlugin
         private void Awake()
         {
             // Insert code that runs once the plugin starts
+
+            //Loads all Harmony patches in this dll
+            new Harmony(GetType().ToString()).PatchAll(Assembly.GetExecutingAssembly());
         }
     }
 }
